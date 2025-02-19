@@ -14,7 +14,9 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "prisma:generate": "prisma generate",
-    "prisma:migrate": "prisma migrate dev"
+    "prisma:migrate": "prisma migrate dev",
+    "vercel-build": "nest build",
+    "deploy": "vercel deploy"
   },
   "dependencies": {
     "@nestjs/common": "^10.2.7",
