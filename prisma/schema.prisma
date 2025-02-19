@@ -4,16 +4,16 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
 model MenuItem {
-  id        String     @id @default(uuid())
+  id        String     @id @default(auto()) @map("_id") @db.ObjectId
   name      String
   depth     Int        @default(0)
-  parentId  String?
-  parent    MenuItem?  @relation("MenuHierarchy", fields: [parentId], references: [id])
+  parentId  String?    @db.ObjectId
+  parent    MenuItem?  @relation("MenuHierarchy", fields: [parentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   children  MenuItem[] @relation("MenuHierarchy")
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
